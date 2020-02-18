@@ -1,6 +1,4 @@
-## Objective-C Runtime
-
-### Runtime 是什么？
+## Runtime 是什么？
 
 Runtime 是 Objective-C 区别于 C 语言这样的静态语言的一个非常重要的特性。对于 C 语言，函数的调用会在编译期就已经决定好，在编译完成后直接顺序执行。但是 OC 是一门动态语言，函数调用变成了消息发送，在编译期不能知道要调用哪个函数。所以 Runtime 无非就是去解决如何在运行时期找到调用方法这样的问题。
 
@@ -38,7 +36,7 @@ struct objc_class {
 /* Use `Class` instead of `struct objc_class *` */
 ```
 
-### SEL 与 IMP
+## SEL 与 IMP
 
 SEL 可以将其理解为方法的 ID. 结构如下：
 
@@ -55,7 +53,7 @@ IMP 可以理解为函数指针，指向了最终的实现。
 
 SEL 与 IMP 的关系非常类似于 HashTable 中 key 与 value 的关系。OC 中不支持函数重载的原因就是因为一个类的方法列表中不能存在两个相同的 SEL 。但是多个方法却可以在不同的类中有一个相同的 SEL，不同类的实例对象执行相同的 SEL 时，会在各自的方法列表中去根据 SEL 去寻找自己对应的IMP。这使得OC可以支持函数重写。
 
-### 消息传递机制
+## 消息传递机制
 
 - objc_msgSend函数的消息处理过程
 - 不涵盖消息cache机制
@@ -240,7 +238,7 @@ IMP lookUpImpOrForward(Class cls, SEL sel, id inst,
 
 我们可以看到每一个类都维护了一个cache，在一个对象调用runtime的objc_msgSend函数后，runtime在接收者所属的类的cache中查找与_cmd所对应的IMP，如果没有命中就寻找当前类的方法列表，再找不到就跳入while循环寻找超类的cache和方法列表，如果这些方法都失效，就调用`_class_resolveMethod`查找正在插入这个类的方法，之后再重新尝试整一个流程，如果最后还是没能找到一个对应的IMP，则调用消息转发机制。
 
-### 动态消息解析
+## 动态消息解析
 
 ![](https://raw.githubusercontent.com/WiInputMethod/interview/master/img/ios-runtime-method-resolve.png)
 

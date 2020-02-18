@@ -149,7 +149,7 @@ OC 中的方法只要声明在 @interface里，就可以认为都是公有的。
 
 这种情况下，编译器生成的 getter 方法名为 `isFinished`，而不是 `finished`。
 
-### @synthesize 和 @dynamic
+## @synthesize 和 @dynamic
 
 对于现代 OC 来说，在使用 `@property` 时， 编译器默认会进行自动 synthesize，生成 getter 和 setter，同时把 ivar 和属性绑定起来：
 
@@ -170,7 +170,7 @@ OC 中的方法只要声明在 @interface里，就可以认为都是公有的。
 
 ## 类的扩展——Protocol, Category 和 Extension
 
-### Protocol 
+## Protocol 
 
 OC是单继承的，OC中的类可以实现多个 protocol 来实现类似 C++ 中多重继承的效果。
 
@@ -243,7 +243,7 @@ Delegate（委托）是 Cocoa 中常见的一种设计模式，其实现依赖�
 @end
 ```
 
-### Category
+## Category
 
 Category 是一种很灵活的扩展原有类的机制，使用 Category 不需要访问原有类的代码，也无需继承。Category提供了一种简单的方式，来实现类的相关方法的模块化，把不同的类方法分配到不同的类文件中。
 
@@ -281,7 +281,7 @@ Category 常见的使用方法如下：
 ```
 
 
-### Extension
+## Extension
 
 Extension 可以认为是一种匿名的 Category， Extension 与 Category 有如下几点显著的区别：
 
@@ -341,7 +341,7 @@ Extension 很常见的用法，是用来给类添加**私有**的变量和方法
 @end
 ```
 
-#### 如何给已有的类添加属性
+## 如何给已有的类添加属性
 
 首先强调一下上面例子中所展示的，Extension 可以给类添加属性，编译器会自动生成 getter，setter 和 ivar。 Category 并不支持这些。如果使用 Category 的话，类似下面这样：
 
@@ -374,7 +374,7 @@ Extension 很常见的用法，是用来给类添加**私有**的变量和方法
 
 不过我们还有别的方法，想通过 Category 添加属性的话，可以通过 Runtime 当中提供的 associated object 特性。NSHipster 的 [这篇文章](http://nshipster.cn/associated-objects/) 展示了具体的做法。
 
-#### 如何在类中添加全局变量
+## 如何在类中添加全局变量
 
 有些时候我们需要在类中添加某个在类中全局可用的变量，为了避免污染作用域，一个比较好的做法是在 .m 文件中使用 static 变量：
 

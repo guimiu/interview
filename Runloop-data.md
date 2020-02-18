@@ -14,7 +14,7 @@ Runloop 是什么？Runloop 还是比较顾名思义的一个东西，说白了�
 
 图中展现了 Runloop 在线程中的作用：从 input source 和 timer source 接受事件，然后在线程中处理事件。
 
-### Runloop 与线程
+## Runloop 与线程
 
 Runloop 和线程是绑定在一起的。每个线程（包括主线程）都有一个对应的 Runloop 对象。我们并不能自己创建 Runloop 对象，但是可以获取到系统提供的 Runloop 对象。
 
@@ -30,7 +30,7 @@ Runloop 和线程是绑定在一起的。每个线程（包括主线程）都有
 
 Timer Source 顾名思义就是指定时器事件了。
 
-### Runloop Observer
+## Runloop Observer
 
 Runloop 通过监控 Source 来决定有没有任务要做，除此之外，我们还可以用 Runloop Observer 来监控 Runloop 本身的状态。 Runloop Observer 可以监控下面的 runloop 事件：
 
@@ -41,7 +41,7 @@ Runloop 通过监控 Source 来决定有没有任务要做，除此之外，我�
 * When the run loop has woken up, but before it has processed the event that woke it up.
 * The exit from the run loop.
 
-### Runloop Mode
+## Runloop Mode
 
 在监视与被监视中，Runloop 要处理的事情还挺复杂的。为了让 Runloop 能专心处理自己关心的那部分事情，引入了 Runloop Mode 概念。
 
@@ -59,7 +59,7 @@ Runloop 通过监控 Source 来决定有没有任务要做，除此之外，我�
 
 iOS 中公开暴露出来的只有 NSDefaultRunLoopMode 和 NSRunLoopCommonModes。 NSRunLoopCommonModes 实际上是一个 Mode 的集合，默认包括 NSDefaultRunLoopMode 和 NSEventTrackingRunLoopMode。
 
-### 与 Runloop 相关的坑
+## 与 Runloop 相关的坑
 
 日常开发中，与 runLoop 接触得最近可能就是通过 NSTimer 了。一个 Timer 一次只能加入到一个 RunLoop 中。我们日常使用的时候，通常就是加入到当前的 runLoop 的 default mode 中，而 ScrollView 在用户滑动时，主线程 RunLoop 会转到 UITrackingRunLoopMode 。而这个时候， Timer 就不会运行。
 

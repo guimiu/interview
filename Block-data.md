@@ -1,6 +1,4 @@
-## Block 基础
-
-### Block 语法
+## Block 语法
 
 Block 可以认为是一种匿名函数，使用如下语法声明一个 Block 类型：
 
@@ -76,7 +74,7 @@ typedef returnType (^TypeName)(parameterTypes);
 TypeName blockName = ^returnType(parameters) {...};
 ```
 
-### Block 可以捕获外部变量
+## Block 可以捕获外部变量
 
 Block 可以捕获来自外部作用域的变量，这是Block一个很强大的特性。
 
@@ -120,9 +118,7 @@ myController.completionHandler =  ^(NSInteger result) {
 };
 ```
 
-## Block 进阶
-
-### 使用 Block 时的注意事项
+## 使用 Block 时的注意事项
 
 在非 ARC 的情况下，对于 block 类型的属性应该使用 `copy` ，因为 block 需要维持其作用域中捕获的变量。在 ARC 中编译器会自动对 block 进行 copy 操作，因此使用 `strong` 或者 `copy` 都可以，没有什么区别，但是苹果仍然建议使用 `copy` 来指明编译器的行为。
 
@@ -177,7 +173,7 @@ NSBlockOperation *op = [[[NSBlockOperation alloc] init] autorelease];
 
 很多文章对于 weakSelf 的解释中并没有详细说，为什么有可能 block 执行的过程当中 weakSelf 变为 nil，这就涉及到 weak 本身的机制了。weak 置 nil 的操作发生在 dealloc 中，苹果在 [TN2109 - The Deallocation Problem](https://developer.apple.com/library/content/technotes/tn2109/_index.html#//apple_ref/doc/uid/DTS40010274-CH1-SUBSECTION11) 中指出，最后一个持有 object 的对象被释放的时候，会触发对象的 dealloc，而这个持有者的释放操作就不一定保证发生在哪个线程了。因此 block 执行的过程中 weakSelf 有可能在另外的线程中被置为 nil。
 
-### Block 在堆上还是在栈上？
+## Block 在堆上还是在栈上？
 
 首先要指出，Block 在非 ARC 和 ARC 两种环境下的内存机制差别很大。
 

@@ -12,7 +12,7 @@
 
 Objective-C中提供了两种内存管理机制：MRC（MannulReference Counting）和 ARC(Automatic Reference Counting)，分别提供对内存的手动和自动管理，来满足不同的需求。现在苹果推荐使用 ARC 来进行内存管理。
 
-### MRC 
+## MRC 
 
 #### 对象操作的四个类别
 
@@ -87,11 +87,11 @@ id obj = [NSArray array]; // 非自己生成的对象，且该对象存在，但
 
 在MRC的内存管理模式下，与对变量的管理相关的方法有：retain, release 和 autorelease。retain 和 release 方法操作的是引用记数，当引用记数为零时，便自动释放内存。并且可以用 NSAutoreleasePool 对象，对加入自动释放池（autorelease 调用）的变量进行管理，当 drain 时回收内存。
 
-### ARC 
+## ARC 
 
 ARC 是苹果引入的一种自动内存管理机制，会根据引用计数自动监视对象的生存周期，实现方式是在编译时期自动在已有代码中插入合适的内存管理代码以及在 Runtime 做一些优化。
 
-#### 变量标识符
+## 变量标识符
 
 在ARC中与内存管理有关的变量标识符，有下面几种：
 
@@ -116,7 +116,7 @@ Number* __strong num = [[Number alloc] init];
 
 注意 `__strong` 的位置应该放到 `*` 和变量名中间，放到其他的位置严格意义上说是不正确的，只不过编译器不会报错。
 
-#### 属性标识符
+## 属性标识符
 
 类中的属性也可以加上标志符：
 
@@ -155,7 +155,7 @@ Number* __strong num = [[Number alloc] init];
 1. 兼容性考虑。iOS4 以及之前还没有引入 `weak`，这种情况想表达弱引用的语义只能使用 `unsafe_unretained`。这种情况现在已经很少见了。
 2. 性能考虑。使用 `weak` 对性能有一些影响，因此对性能要求高的地方可以考虑使用 `unsafe_unretained` 替换 `weak`。一个例子是 [YYModel 的实现](https://github.com/ibireme/YYModel/blob/master/YYModel/NSObject%2BYYModel.m)，为了追求更高的性能，其中大量使用 `unsafe_unretained` 作为变量标识符。
 
-### 引用循环
+## 引用循环
 
 当两个对象互相持有对方的强引用，并且这两个对象的引用计数都不是0的时候，便造成了引用循环。
 
@@ -165,7 +165,7 @@ Number* __strong num = [[Number alloc] init];
 * 使用弱引用(weak)
 * 当实例变量完成工作后，将其置为nil
 
-### Autorelease Pool
+## Autorelease Pool
 
 Autorelase Pool 提供了一种可以允许你向一个对象延迟发送`release`消息的机制。当你想放弃一个对象的所有权，同时又不希望这个对象立即被释放掉（例如在一个方法中返回一个对象时），Autorelease Pool 的作用就显现出来了。
 
