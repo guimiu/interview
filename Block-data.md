@@ -40,7 +40,6 @@ NSLog(@"The result is %f", result);
 
 ---
 
-
 **Bonus：** 由于 Block 的语法是如此的晦涩难记，以至于出现了 [fuckingblocksyntax](http://fuckingblocksyntax.com/) 这样的网站专门用于记录 block 的语法，翻译并摘录如下：
 
 作为变量:
