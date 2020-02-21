@@ -2,9 +2,7 @@
 
 **注**：示例中部分代码的完整版可以在[这里](https://github.com/yixiangboy/IOSAnimationDemo)找到。
 
-### UIView Animation
-
-#### 简单动画
+## UIView简单动画
 
 对于 UIView 上简单的动画，iOS 提供了很方便的函数：
 
@@ -72,7 +70,7 @@ iOS 提供了下面的函数可以创建简单的 2D 变换：
 
     UIViewAnimationOptionRepeat | UIViewAnimationOptionAllowUserInteraction
     
-#### 关键帧动画
+## UIView关键帧动画
 
 上面介绍的动画中，我们只能控制开始和结束时的效果，然后由系统补全中间的过程，有些时候我们需要自己设定若干关键帧，实现更复杂的动画效果，这时候就需要关键帧动画的支持了。下面是一个示例：
 
@@ -93,7 +91,7 @@ iOS 提供了下面的函数可以创建简单的 2D 变换：
 
 这个例子添加了三个关键帧，在外面的 `animateKeyframesWithDuration` 中我们设置了持续时间为 2.0 秒，这是真实意义上的时间，里面的 `startTime` 和 `relativeDuration` 都是相对时间。以第一个为例，`startTime` 为 0.0，`relativeTime` 为 0.5，这个动画会直接开始，持续时间为 2.0 X 0.5 = 1.0 秒，下面第二个的开始时间是 0.5，正好承接上一个结束，第三个同理，这样三个动画就变成连续的动画了。
 
-#### View 的转换
+## UIView的转换
 
 iOS 还提供了两个函数，用于进行两个 View 之间通过动画换场：
 
@@ -104,13 +102,13 @@ iOS 还提供了两个函数，用于进行两个 View 之间通过动画换场�
 
 同样，View 之间的转换也有很多选项可选，例如 `UIViewAnimationOptionTransitionFlipFromLeft` 从左边翻转，`UIViewAnimationOptionTransitionCrossDissolve` 渐变等等。
 
-### CALayer Animation 
+## CALayer Animation 
 
 UIView 的动画简单易用，但是能实现的效果相对有限，上面介绍的 UIView 的几种动画方式，实际上是对底层 CALayer 动画的一种封装。直接使用 CALayer 层的动画方法可以实现更多高级的动画效果。
 
 **注意**：使用 CALayer 动画之前，首先需要引入 QuartzCore.framework。
 
-#### 基本动画（CABasicAnimation）
+## 基本动画（CABasicAnimation）
 
 CABasicAnimation 用于创建一个 CALayer 上的基本动画效果，下面是一个例子：
 
@@ -186,7 +184,7 @@ animation.toValue = [NSNumber numberWithInt:200];
 
 此外，我们还可以使用 [CAMediaTimingFunction functionWithControlPoints] 方法来自定义运动曲线，[这个网站](http://netcetera.org/camtf-playground.html)提供了一个将参数调节可视化的效果，关于动画时间系统的具体介绍可以参考[这篇文章](http://geeklu.com/2012/09/animation-in-ios/)。
 
-#### 关键帧动画（CAKeyframeAnimation）
+## 关键帧动画（CAKeyframeAnimation）
 
 同 UIView 中的类似，CALayer 层也提供了关键帧动画的支持，CAKeyFrameAnimation 和 CABasicAnimation 都继承自 CAPropertyAnimation，因此它有具有上面提到的那些属性，此外，CAKeyFrameAnimation 还有特有的几个属性。
 
@@ -241,7 +239,7 @@ animationTwo.duration = 1.0;
 
 需要注意的是，一个 group 组内的某个动画的持续时间（duration），如果超过了整个组的动画持续时间，那么多出的动画时间将不会被展示。例如一个 group  的持续时间是 5s，而组内一个动画持续时间为 10s ，那么这个 10s 的动画只会展示前 5s 。
 
-#### 切换动画（CATransition）
+## 切换动画（CATransition）
 
 CATransition 可以用于 View 或 ViewController 直接的换场动画：
 
@@ -259,9 +257,9 @@ trans.type = @"push";
 
 为什么改变颜色放在前后都可以呢？具体的解释可以参考 SO 上的[这个回答](http://stackoverflow.com/questions/2233692/how-does-catransition-work)。简单来说就是动画和绘制之间并不冲突。
 
-### 更高级的动画效果
+## 更高级的动画效果
 
-#### CADisplayLink
+## CADisplayLink
 
 CADisplayLink 是一个计时器对象，可以周期性的调用某个 selecor 方法。相比 NSTimer ，它可以让我们以和屏幕刷新率同步的频率（每秒60次）来调用绘制函数，实现界面连续的不停重绘，从而实现动画效果。
 
@@ -318,7 +316,7 @@ CADisplayLink 是一个计时器对象，可以周期性的调用某个 selecor 
 @end
 
 ```
-#### UIDynamicAnimator
+## UIDynamicAnimator
 
 UIDynamicAnimator 是 iOS 7 引入的一个新类，可以创建出具有物理仿真效果的动画，具体提供了下面几种物理仿真行为：
 
@@ -344,7 +342,7 @@ collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
 
 可以发现这段代码和我们之前写的动画代码有很大不同，在这里 behavior 是用于控制 View 行为的，我们做的操作是把各种不同的 behavior 加到 animator 中。这段代码实现了 View 因为“重力”原因“掉到”地上，落地的同时还有一个碰撞效果。
 
-#### CAEmitterLayer
+## CAEmitterLayer
 
 CAEmitterLayer 是 Core Animation 提供的一个粒子发生器系统，可以用于创建各种粒子动画，例如烟雾，焰火等效果。
 

@@ -1,6 +1,7 @@
-UIViewController（视图控制器），顾名思义，是 MVC 设计模式中的控制器部分。UIViewController 在 UIKit 中主要功能是用于控制画面的切换，其中的 `view` 属性（UIView 类型）管理整个画面的外观。
 
 ## UIViewController 生命周期
+
+UIViewController（视图控制器），顾名思义，是 MVC 设计模式中的控制器部分。UIViewController 在 UIKit 中主要功能是用于控制画面的切换，其中的 `view` 属性（UIView 类型）管理整个画面的外观。
 
 ViewController 生命周期的第一步是初始化。不过具体调用的方法还有所不同。如果使用 StoryBoard 来创建 ViewController，我们不需要显式地去初始化，Storyboard 会自动使用 `initWithCoder:` 进行初始化。如果不使用 StoryBoard，我们可以使用 `init:` 函数进行初始化，`init:` 函数在实现过程中还会调用 `initWithNibName:bundle:`。 我们应该尽量避免在 VC 外部调用 `initWithNibName:bundle:`，而是把它放在 VC 的内部（参考[这里](https://stackoverflow.com/questions/2224077/when-should-i-initialize-a-view-controller-using-initwithnibname)）。
 

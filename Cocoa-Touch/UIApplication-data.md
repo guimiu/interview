@@ -1,3 +1,6 @@
+
+## UIApplicaion
+
 UIApplication 的核心作用是提供了 iOS 程序运行期间的控制和协作工作。
 
 每一个程序在运行期必须有且仅有一个 UIApplication（或则其子类）的一个实例。在程序开始运行的时候，UIApplicationMain 函数是程序进入点，这个函数做了很多工作，其中一个重要的工作就是创建一个 UIApplication 的单例实例。在你的代码中你，你可以通过调用 [UIApplication sharedApplication] 来得到这个单例实例的指针。
